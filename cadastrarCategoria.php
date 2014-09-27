@@ -1,6 +1,6 @@
 <fieldset>
     <legend>Cadastrar Categoria</legend>
-    <form action="cadastrarProdutos.php" method="post">
+    <form action="adicionaCategoria.php" method="post">
         <label>Nome: </label>
         <input type="text" name="categoria">
         <br>

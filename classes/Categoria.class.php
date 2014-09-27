@@ -25,7 +25,7 @@ class Categoria {
 
     public function insereCategoria() {
 
-        $sql = "INSERT INTO `produtos`.`categoria` (`Nome`) 
+        $sql = "INSERT INTO `produtos`.`categoria` (`nomeCategoria`) 
                 VALUES ('$this->nome')";
 
         ConexaoBD::inserirBanco($sql);
@@ -35,9 +35,7 @@ class Categoria {
 
         $sql = "SELECT * FROM produtos.categoria;";
 
-        ConexaoBD::listar($sql);
+        return $dados = ConexaoBD::listar($sql);
     }
 
-    
-    
 }

@@ -1,5 +1,7 @@
 <?php
 
+include_once 'classes\ConexaoBD.php';
+
 class Produto {
 
     private $nome;
@@ -42,19 +44,19 @@ class Produto {
     public function inserirProduto() {
 
 
-        $sql = "INSERT INTO 'produtos'.'produto' ('nome', 'valor', 'categoria_idCategoria')"
-                . "VALUE ('$this->nome','$this->valor','$this->idCategoria')";
-
+        $sql = "INSERT INTO produtos.produto ('nome', 'valor', 'categoria_idCategoria')
+                VALUES ('$this->nome', '$this->valor', '$this->idCategoria');";
+        var_dump($sql);
         ConexaoBD::inserirBanco($sql);
     }
 
     public function listarProduto() {
 
-        $sql = "SELECT nome,valor,Nome FROM produtos.produto
+        $sql = "SELECT * ,nomeCategoria FROM produtos.produto
                         INNER JOIN produtos.categoria ON
                             produto.categoria_idCategoria = categoria.idCategoria;";
 
-        ConexaoBD::listar($sql);
+        return $dados = ConexaoBD::listar($sql);
     }
 
     public function excluirProduto() {
@@ -68,7 +70,7 @@ class Produto {
 
         $sql = "SELECT * FROM produtos.produto WHERE idProduto = $this->idProduto";
 
-        ConexaoBD::buscarPorId($sql);
+        return $dados = ConexaoBD::buscarPorId($sql);
     }
 
     public function alterarProduto() {
